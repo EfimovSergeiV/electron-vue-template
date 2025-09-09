@@ -1,35 +1,31 @@
-<script setup lang="ts">
-import viteLogo from './assets/vite.svg';
-import vueLogo from './assets/vue.svg';
+<script setup>
+  import { ref, computed } from 'vue';
+  import NavBar from './components/NavBar.vue';
+  import AppFooter from './components/AppFooter.vue';
+  import IndexPage from './pages/IndexPage.vue';
+  import SettingsPage from './pages/SettingsPage.vue';
 
-import HelloWorld from './components/HelloWorld.vue'
+  const currentPage = ref('index');
 
-window.electronAPI.sendMessage('Hello from App.vue!');
+  const pages = {
+    index: IndexPage,
+    settings: SettingsPage,
+  };
+
+  const currentPageComponent = computed(() => pages[currentPage.value]);
+
+  function navigate(page) {
+    currentPage.value = page;
+  }
 </script>
 
+
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img :src="viteLogo" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img :src="vueLogo" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app" class="">
+    <NavBar :current="currentPage" @navigate="navigate" />
+    <component :is="currentPageComponent" />
+    <AppFooter />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+
