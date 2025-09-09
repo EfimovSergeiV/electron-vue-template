@@ -17,6 +17,14 @@
   function navigate(page) {
     currentPage.value = page;
   }
+
+
+  const isDark = ref(false)
+
+  function toggleTheme() {
+    isDark.value = !isDark.value
+    document.documentElement.classList.toggle('dark', isDark.value)
+  }
 </script>
 
 
@@ -24,6 +32,10 @@
   <div id="app" class="">
     <NavBar :current="currentPage" @navigate="navigate" />
     <component :is="currentPageComponent" />
+    
+      <button @click="toggleTheme">
+        Переключить тему
+    </button>
     <AppFooter />
   </div>
 </template>
