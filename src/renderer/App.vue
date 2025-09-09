@@ -19,23 +19,19 @@
   }
 
 
-  const isDark = ref(false)
+  // const isDark = ref(false)
 
-  function toggleTheme() {
-    isDark.value = !isDark.value
-    document.documentElement.classList.toggle('dark', isDark.value)
-  }
+  // function toggleTheme() {
+  //   isDark.value = !isDark.value
+  //   document.documentElement.classList.toggle('dark', isDark.value)
+  // }
 </script>
 
 
 <template>
-  <div id="app" class="">
+  <div id="app" class="bg-gray-100 dark:bg-gray-900 h-screen flex flex-col justify-between">
     <NavBar :current="currentPage" @navigate="navigate" />
     <component :is="currentPageComponent" />
-    
-      <button @click="toggleTheme">
-        Переключить тему
-    </button>
     <AppFooter />
   </div>
 </template>
