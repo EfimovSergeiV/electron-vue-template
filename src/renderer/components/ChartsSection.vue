@@ -25,25 +25,25 @@
     <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 mt-6">
 
 
-    <div class="">
       <div class="">
-        <div class="flex gap-8 items-center">
-          
-          <div class="py-8 flex flex-col gap-6">
-            <PrimaryButton :text="`+5`" :width="`w-18`" @click="counter.incKw" />
-            <DangerButton :text="`-5`" :width="`w-18`" @click="counter.decKw" />     
+        <div class="">
+          <div class="flex gap-8 items-center">
+            
+            <div class="py-8 flex flex-col gap-6">
+              <PrimaryButton :text="`+5`" :width="`w-18`" @click="counter.incKw" />
+              <DangerButton :text="`-5`" :width="`w-18`" @click="counter.decKw" />     
+            </div>
+
+            <CircleControl />
+
+            <div class="py-8 flex flex-col gap-6">
+              <PrimaryButton :text="`+10`" :width="`w-18`" @click="counter.valueKw += 10" />
+              <DangerButton :text="`-10`" :width="`w-18`" @click="counter.valueKw -= 10" />     
+            </div>
+
           </div>
-
-          <CircleControl />
-
-          <div class="py-8 flex flex-col gap-6">
-            <PrimaryButton :text="`+10`" :width="`w-18`" @click="counter.valueKw += 10" />
-            <DangerButton :text="`-10`" :width="`w-18`" @click="counter.valueKw -= 10" />     
-          </div>
-
         </div>
       </div>
-    </div>
 
       <div class="bg-white px-4 py-2 rounded-lg shadow-md">
         <ChartSimple />
