@@ -1,4 +1,7 @@
 <script setup>
+  import PrimaryButton from './btn/PrimaryButton.vue';
+
+
   import { ref } from 'vue'
   const props = defineProps({
     current: {
@@ -13,8 +16,8 @@
 
 <template>
   <nav class="flex gap-4 p-4">
-    <button @click="$emit('navigate', 'index')" class="px-3 py-1 rounded hover:bg-gray-300" :class="{ 'bg-blue-500 text-white': current === 'index' }">Главная</button>
-    <button @click="$emit('navigate', 'settings')" class="px-3 py-1 rounded hover:bg-gray-300" :class="{ 'bg-blue-500 text-white': current === 'settings' }">Настройки</button>
+    <PrimaryButton :text="`Главная`" @click="$emit('navigate', 'index')" :class="{ 'border-b-4 border-green-400 pb-1': current === 'index' }" />
+    <PrimaryButton :text="`Настройки`" @click="$emit('navigate', 'settings')" :class="{ 'border-b-4 border-green-400 pb-1': current === 'settings' }" />
     <button type="button" @click="count++">count is {{ count }}, currentPage: {{ current }}</button>
   </nav>
 </template>
