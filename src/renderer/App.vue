@@ -6,7 +6,6 @@
   const { locale } = useI18n()
 
 
-
   import NavBar from './components/NavBar.vue';
   // import CircleControl from './components/radial/CircleControl.vue';
   import SemicircleControl from './components/radial/SemicircleControl.vue'
@@ -45,7 +44,6 @@
     <div class="flex gap-4">
       
       <NavBar :current="currentPage" @navigate="navigate" />
-
 
       <form class="language">
         <label for="locale-select">{{ $t('menu.language') }}</label>
