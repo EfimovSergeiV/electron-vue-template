@@ -15,6 +15,10 @@
   import ChartPage from './pages/ChartPage.vue';
   import SettingsPage from './pages/SettingsPage.vue';
 
+
+  import { useCounterStore } from './stores/counter'
+  const counter = useCounterStore()
+
   const currentPage = ref('index');
 
   const pages = {
@@ -60,9 +64,9 @@
             <div class="">
               <div class="flex gap-8 items-center mt-20">
                 
-                <SemicircleControl />
-                <SemicircleControl />
-                <SemicircleControl />
+                <SemicircleControl :value="counter.valueKw" />
+                <SemicircleControl :value="counter.valueKw1" />
+                <SemicircleControl :value="counter.valueKw2" />
 
               </div>
             </div>

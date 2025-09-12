@@ -15,8 +15,10 @@ import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore('counter', {
   state: () => ({
-    count: 0,
-    valueKw: 0
+    count: 10,
+    valueKw: 50,
+    valueKw1: 10,
+    valueKw2: 30,
   }),
   actions: {
     increment() {

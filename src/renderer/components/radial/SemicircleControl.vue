@@ -3,15 +3,23 @@
   import { Doughnut } from 'vue-chartjs'
   import { ref, computed } from 'vue'
 
-  import { useCounterStore } from '../../stores/counter'
-  const counter = useCounterStore()
+  // import { useCounterStore } from '../../stores/counter'
+  // const counter = useCounterStore()
+
+  const props = defineProps({
+    value: {
+      type: Number,
+      required: true
+    }
+  });
 
   ChartJS.register(ArcElement, Tooltip)
 
-  const speed = ref(counter.valueKw)
+  // const speed = ref(counter.valueKw)
   const maxSpeed = 180
 
-  const percent = computed(() => counter.valueKw / maxSpeed * 100)
+  console.log('VALUE', props.value)
+  const percent = computed(() => props.value / maxSpeed * 100)
 
   const chartData = computed(() => ({
     datasets: [
@@ -36,9 +44,7 @@
 
 <template>
   <div class="flex flex-col items-center relative select-none">
-
     <Doughnut :data="chartData" :options="chartOptions" class="w-[180px] h-[180px]" />
-    <div class="text-gray-900 dark:text-white absolute bottom-10 text-4xl font-bold">{{ counter.valueKw }} Kw</div>
-
+    <div class="text-gray-900 dark:text-white absolute bottom-10 text-4xl font-bold">{{ value }} Kw</div>
   </div>
 </template>
