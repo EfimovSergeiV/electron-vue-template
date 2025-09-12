@@ -6,7 +6,7 @@
   const { locale } = useI18n()
 
 
-  import NavBar from './components/NavBar.vue';
+  import AppHeader from './components/AppHeader.vue';
   // import CircleControl from './components/radial/CircleControl.vue';
   import SemicircleControl from './components/radial/SemicircleControl.vue'
   // import AppFooter from './components/AppFooter.vue';
@@ -28,7 +28,7 @@
   function navigate(page) {
     currentPage.value = page;
   }
-
+  import PrimaryButton from './components/btn/PrimaryButton.vue';
 
   // const isDark = ref(false)
 
@@ -41,23 +41,11 @@
 
 <template>
   <div id="app" class="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col justify-between">
-    <div class="flex gap-4">
-      
-      <NavBar :current="currentPage" @navigate="navigate" />
-
-      <form class="language">
-        <label for="locale-select">{{ $t('menu.language') }}</label>
-        <select id="locale-select" v-model="locale">
-          <option
-            v-for="availableLocale in ['en', 'ru']"
-            :key="availableLocale"
-            :value="availableLocale"
-          >
-            {{ availableLocale }}
-          </option>
-        </select>
-      </form>
-
+    
+    <div class="container mx-auto">
+      <div id="header" class="">
+        <AppHeader :current="currentPage" @navigate="navigate" />
+      </div>      
     </div>
 
     <component :is="currentPageComponent" />

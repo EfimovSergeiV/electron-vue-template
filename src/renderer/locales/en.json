@@ -5,6 +5,10 @@
     "settings": "Settings",
     "language": "Languages"
   },
+  "test": {
+    "PropertyName": "Property name",
+    "PropertyValue": "Value"
+  },
   "components": {
     "Foo": "from JSX",
     "ImportType": "import type should be removed without side-effect"

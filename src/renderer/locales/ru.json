@@ -3,7 +3,11 @@
     "home": "Главная",
     "about": "О программе",
     "settings": "Настройки",
-    "language": "Язык"
+    "language": "Язык интерфейса"
+  },
+  "test": {
+    "PropertyName": "Название свойства",
+    "PropertyValue": "Значение"
   },
   "components": {
     "Foo": "from JSX",
