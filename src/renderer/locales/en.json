@@ -1,6 +1,8 @@
 {
   "menu": {
     "home": "Home",
+    "charts": "Charts",
+    "darkmode": "Darkmode",    
     "about": "About",
     "settings": "Settings",
     "language": "Languages"
