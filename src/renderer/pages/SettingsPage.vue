@@ -39,17 +39,32 @@
             <label for="locale-select">{{ $t('menu.language') }}</label>
           </div>
           <div class="">
-            <select id="locale-select" v-model="locale">
-              <option
-                v-for="availableLocale in ['en', 'ru']"
-                :key="availableLocale"
-                :value="availableLocale"
+            <div class="relative w-48">
+              <select
+                id="locale-select"
+                v-model="locale"
+                class="appearance-none w-full rounded-xl border border-gray-300 bg-gray-50 py-2 pl-3 pr-8 text-sm text-gray-900 shadow-sm transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
-                {{ languages[availableLocale] }}
-              </option>
-            </select>
+                <option
+                  v-for="availableLocale in ['en', 'ru']"
+                  :key="availableLocale"
+                  :value="availableLocale"
+                >
+                  {{ languages[availableLocale] }}
+                </option>
+              </select>
+
+              <!-- кастомная стрелка -->
+              <span
+                class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-500 dark:text-gray-300"
+              >
+                ▼
+              </span>
+            </div>
           </div>
         </div>
+
+
 
 
 
