@@ -20,6 +20,10 @@
   })
 
 
+  const runPythonScript = () => {
+    console.log("Im work")
+  }
+
 </script>
 
 
@@ -65,6 +69,13 @@
         <div v-for="i in 10" class="flex items-center justify-between gap-8 border-b border-black/10 dark:border-white/10"><p>{{ $t('test.PropertyName') }} {{ i }}</p> <p>{{ $t('test.PropertyValue') }} {{ i }}</p></div>
 
 
+
+      </div>
+
+
+      <div class="">
+        
+        <button @click="runPythonScript()" class="bg-blue-500 px-6 py-2 rounded-sm text-white font-semibold">Запустить Python скрипт</button>
 
       </div>
 
