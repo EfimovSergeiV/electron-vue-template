@@ -17,6 +17,8 @@ Building the Electron (main) process is done with [Electron Builder](https://www
 ### Install dependencies ⏬
 
 ```bash
+node --version #  v20.19.2
+
 npm install
 ```
 

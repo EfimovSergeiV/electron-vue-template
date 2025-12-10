@@ -44,7 +44,7 @@
 
 
 <template>
-  <div id="app" class="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col justify-between">
+  <div id="app" class="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col justify-between select-none">
     
     <div class="container mx-auto px-2">
       <div id="header" class="">
