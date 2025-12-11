@@ -8,13 +8,15 @@
         "oneClick": false,
         "perMachine": false,
         "allowToChangeInstallationDirectory": true,
-        "shortcutName": "Electron App"
+        "shortcutName": "Example App"
     },
     "win": {
-        "target": "nsis"
+        "target": "nsis",
+        "icon": "src/main/static/icon.ico"
     },
     "linux":  {
-        "target": ["snap"]
+        "target": ["snap"],
+        "icon": "src/main/static/icon.png"
     },
     "files": [
         {
@@ -35,5 +37,11 @@
 	"!build",
 	"!dist",
 	"!scripts"
+    ],
+    "extraResources": [
+        {
+            "from": "src/main/python",
+            "to": "python"
+        }
     ]
 }

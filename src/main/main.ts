@@ -1,5 +1,6 @@
 import {app, BrowserWindow, ipcMain, session} from 'electron';
 import {join} from 'path';
+import { runPython } from './runPython';
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
@@ -50,4 +51,7 @@ ipcMain.on('message', (event, message) => {
   console.log(message);
 })
 
-
+// IPC обработчик
+ipcMain.handle('run-python', async () => {
+  return await runPython();
+});

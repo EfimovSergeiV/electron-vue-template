@@ -20,8 +20,10 @@
   })
 
 
-  const runPythonScript = () => {
+  const runPythonScript = async () => {
     console.log("Im work")
+    const result = await window.electronAPI.runPython();
+    console.log(result); // "Hello from Python"
   }
 
 </script>
