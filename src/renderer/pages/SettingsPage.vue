@@ -31,29 +31,37 @@
 
   onMounted(() => {
     window.electronAPI.onPythonOutput((data) => {
-      try {
-        const obj = JSON.parse(data);  // превращаем JSON-строку в объект
-        pyResult.value.push(obj);
-      } catch (e) {
-        console.error('Ошибка парсинга JSON из Python:', data);
-      }
+      
+      pyResult.value.push(data)
+      
+      // try {
+      //   const obj = JSON.parse(data);  // превращаем JSON-строку в объект
+      //   pyResult.value.push(obj);
+      // } catch (e) {
+      //   console.error('Ошибка парсинга JSON из Python:', data);
+      // }
     });
-
-    window.electronAPI.runPython();
   });
+
+  const runPythonScript = async () => {
+    window.electronAPI.runPython();
+  }
+
 </script>
 
 
 <template>
   <div class="min-h-screen container mx-auto px-2 text-gray-800 dark:text-blue-500">
-    
+  
+    <div class="mb-4">
+      <button @click="runPythonScript()" class="bg-blue-500 px-6 py-2 rounded-sm text-white font-semibold">Запустить Python скрипт</button>
+    </div>
     
     <div v-for="(value, i) in pyResult.slice(-5)" :key="i" class="">
       <p class="">{{ i }} {{ value }}</p>
     </div>
-    
-    
-    
+
+
     <!-- <div class="my-6 pb-1 border-b border-black/10 dark:border-white/10">
       <h1 class="text-3xl text-gray-800 dark:text-blue-500">{{ $t('menu.settings') }}</h1>
     </div> -->
@@ -85,13 +93,6 @@
           </div>
         </div>
         <div v-for="i in 10" class="flex items-center justify-between gap-8 border-b border-black/10 dark:border-white/10"><p>{{ $t('test.PropertyName') }} {{ i }}</p> <p>{{ $t('test.PropertyValue') }} {{ i }}</p></div>
-      </div> -->
-
-
-      <!-- <div class="">
-        
-        <button @click="runPythonScript()" class="bg-blue-500 px-6 py-2 rounded-sm text-white font-semibold">Запустить Python скрипт</button>
-
       </div> -->
 
 
