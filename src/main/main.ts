@@ -52,6 +52,35 @@ ipcMain.on('message', (event, message) => {
 })
 
 // IPC обработчик
-ipcMain.handle('run-python', async () => {
-  return await runPython();
+// ipcMain.handle('run-python', async () => {
+//   return await runPython();
+// });
+
+
+import { spawn } from 'child_process';
+import path from 'path';
+
+ipcMain.handle('run-python', (event) => {
+  // путь к скрипту
+  const scriptPath = app.isPackaged
+    ? path.join(process.resourcesPath, 'python', 'testdata.py')
+    : path.join(process.cwd(), 'src', 'main', 'python', 'testdata.py');
+
+  // использовать системный Python
+  const pythonExe = process.platform === 'win32' ? 'python' : 'python3';
+  const py = spawn(pythonExe, [scriptPath]);
+
+  // Отправляем stdout в renderer по мере появления
+  py.stdout.on('data', (data) => {
+    event.sender.send('python-stdout', data.toString());
+  });
+
+  py.stderr.on('data', (data) => {
+    event.sender.send('python-stdout', data.toString());
+  });
+
+  return new Promise((resolve, reject) => {
+    py.on('close', () => resolve('Python finished'));
+    py.on('error', reject);
+  });
 });
