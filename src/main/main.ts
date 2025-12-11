@@ -57,20 +57,21 @@ ipcMain.on('message', (event, message) => {
 // });
 
 
-import { spawn } from 'child_process';
+import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import path from 'path';
 
+let currentPyProcess: ChildProcessWithoutNullStreams | null = null;
+
 ipcMain.handle('run-python', (event) => {
-  // путь к скрипту
   const scriptPath = app.isPackaged
     ? path.join(process.resourcesPath, 'python', 'testdata.py')
     : path.join(process.cwd(), 'src', 'main', 'python', 'testdata.py');
 
-  // использовать системный Python
   const pythonExe = process.platform === 'win32' ? 'python' : 'python3';
-  const py = spawn(pythonExe, [scriptPath]);
 
-  // Отправляем stdout в renderer по мере появления
+  const py = spawn(pythonExe, [scriptPath]);
+  currentPyProcess = py; // сохранить процесс
+
   py.stdout.on('data', (data) => {
     event.sender.send('python-stdout', data.toString());
   });
@@ -79,8 +80,20 @@ ipcMain.handle('run-python', (event) => {
     event.sender.send('python-stdout', data.toString());
   });
 
-  return new Promise((resolve, reject) => {
-    py.on('close', () => resolve('Python finished'));
-    py.on('error', reject);
+  return new Promise((resolve) => {
+    py.on('close', () => {
+      currentPyProcess = null;
+      resolve('Python finished');
+    });
   });
+});
+
+// КНОПКА "СТОП"
+ipcMain.handle('stop-python', () => {
+  if (currentPyProcess) {
+    currentPyProcess.kill();   // завершает выполнение
+    currentPyProcess = null;
+    return 'killed';
+  }
+  return 'no-process';
 });

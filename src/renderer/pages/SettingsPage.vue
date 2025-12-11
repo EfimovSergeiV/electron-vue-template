@@ -47,18 +47,23 @@
     window.electronAPI.runPython();
   }
 
+  const stopPython = () => {
+    window.electronAPI.stopPython();
+  };
+
 </script>
 
 
 <template>
   <div class="min-h-screen container mx-auto px-2 text-gray-800 dark:text-blue-500">
   
-    <div class="mb-4">
+    <div class="flex gap-4 mb-4">
       <button @click="runPythonScript()" class="bg-blue-500 px-6 py-2 rounded-sm text-white font-semibold">Запустить Python скрипт</button>
+      <button @click="stopPython()" class="bg-blue-500 px-6 py-2 rounded-sm text-white font-semibold">Остановить Python скрипт</button>
     </div>
     
     <div v-for="(value, i) in pyResult.slice(-5)" :key="i" class="">
-      <p class="">{{ i }} {{ value }}</p>
+      <p class="">{{ i }} - {{ value }}</p>
     </div>
 
 

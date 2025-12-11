@@ -1,6 +1,9 @@
 from time import sleep
 
-for i in range(50):
-    print(f'hallo welt {i}', flush=True)
-    sleep(0.3)
+
+count = 0
+while True:
+    count += 1
+    print(f'{count} message', flush=True)
+    sleep(0.000001)
 
